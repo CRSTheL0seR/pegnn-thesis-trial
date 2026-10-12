@@ -5,3 +5,10 @@ ansys_runs/
 *.out 
 *.err 
 *.log
+*.db 
+*.dbb 
+*.esav 
+*.full 
+*.rth 
+*.mntr 
+*.DSP
