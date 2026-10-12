@@ -1,0 +1,78 @@
+! ============================================================
+! run_case.mac -- Phase 3: single-case steady thermal solve
+! Expects: sample_id, comp1..comp4 _x1/_y1/_x2/_y2/_power
+! ============================================================
+
+/PREP7
+
+board_L = 0.1
+board_W = 0.1
+k_val   = 1.0
+T_sink  = 298
+esize_val = 0.002
+
+ET,1,PLANE55
+MP,KXX,1,k_val
+
+! ---- Geometry ----
+RECTNG,0,board_L,0,board_W
+RECTNG,comp1_x1,comp1_x2,comp1_y1,comp1_y2
+RECTNG,comp2_x1,comp2_x2,comp2_y1,comp2_y2
+RECTNG,comp3_x1,comp3_x2,comp3_y1,comp3_y2
+RECTNG,comp4_x1,comp4_x2,comp4_y1,comp4_y2
+
+AOVLAP,ALL
+
+ESIZE,esize_val
+AMESH,ALL
+
+! ---- Heat generation, by location (safe: components don't touch board edge or each other) ----
+ASEL,S,LOC,X,comp1_x1,comp1_x2
+ASEL,R,LOC,Y,comp1_y1,comp1_y2
+BFA,ALL,HGEN,comp1_power
+ALLSEL,ALL
+
+ASEL,S,LOC,X,comp2_x1,comp2_x2
+ASEL,R,LOC,Y,comp2_y1,comp2_y2
+BFA,ALL,HGEN,comp2_power
+ALLSEL,ALL
+
+ASEL,S,LOC,X,comp3_x1,comp3_x2
+ASEL,R,LOC,Y,comp3_y1,comp3_y2
+BFA,ALL,HGEN,comp3_power
+ALLSEL,ALL
+
+ASEL,S,LOC,X,comp4_x1,comp4_x2
+ASEL,R,LOC,Y,comp4_y1,comp4_y2
+BFA,ALL,HGEN,comp4_power
+ALLSEL,ALL
+
+! ---- Boundary: right edge = heat sink ----
+LSEL,S,LOC,X,board_L
+NSLL,S,1
+D,ALL,TEMP,T_sink
+ALLSEL,ALL
+
+FINISH
+
+/SOLU
+ANTYPE,STATIC
+TIMINT,OFF
+SOLVE
+FINISH
+
+/POST1
+*GET,nmax,NODE,,COUNT
+*DIM,nx_arr,ARRAY,nmax
+*DIM,ny_arr,ARRAY,nmax
+*DIM,t_arr,ARRAY,nmax
+
+*VGET,nx_arr,NODE,,LOC,X
+*VGET,ny_arr,NODE,,LOC,Y
+*VGET,t_arr,NODE,,TEMP
+
+*CFOPEN,out_temp_%sample_id%,csv
+*VWRITE,nx_arr(1),ny_arr(1),t_arr(1)
+(F10.6,',',F10.6,',',F10.4)
+*CFCLOS
+FINISH

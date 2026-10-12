@@ -1,0 +1,22 @@
+sample_id = 52
+comp1_x1 = 0.004712
+comp1_y1 = 0.06567
+comp1_x2 = 0.024712
+comp1_y2 = 0.09567
+comp1_power = 14029.21
+comp2_x1 = 0.03468
+comp2_y1 = 0.063422
+comp2_x2 = 0.04468
+comp2_y2 = 0.073422
+comp2_power = 34554.96
+comp3_x1 = 0.06868
+comp3_y1 = 0.032203
+comp3_x2 = 0.08868
+comp3_y2 = 0.052203
+comp3_power = 30093.26
+comp4_x1 = 0.046027
+comp4_y1 = 0.081572
+comp4_x2 = 0.068527
+comp4_y2 = 0.091572
+comp4_power = 11823.21
+/INPUT,run_case,mac

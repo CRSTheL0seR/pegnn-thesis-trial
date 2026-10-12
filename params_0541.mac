@@ -1,0 +1,22 @@
+sample_id = 541
+comp1_x1 = 0.003846
+comp1_y1 = 0.005261
+comp1_x2 = 0.023846
+comp1_y2 = 0.035261
+comp1_power = 23609.4
+comp2_x1 = 0.06958
+comp2_y1 = 0.044135
+comp2_x2 = 0.07958
+comp2_y2 = 0.054135
+comp2_power = 29312.3
+comp3_x1 = 0.023447
+comp3_y1 = 0.043664
+comp3_x2 = 0.043447
+comp3_y2 = 0.063664
+comp3_power = 29888.03
+comp4_x1 = 0.054394
+comp4_y1 = 0.014025
+comp4_x2 = 0.076894
+comp4_y2 = 0.024025
+comp4_power = 802.44
+/INPUT,run_case,mac

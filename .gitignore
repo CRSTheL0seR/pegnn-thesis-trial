@@ -1,0 +1,7 @@
+out_temp_*.csv 
+*.npz 
+*.pt 
+ansys_runs/ 
+*.out 
+*.err 
+*.log
